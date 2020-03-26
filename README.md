@@ -6,7 +6,7 @@
 
 ## Usage
 
-You can send requests with to a Nimiq node using a `Lunanimous\Rpc\NimiqClient` object.
+Send requests to a Nimiq node using a `Lunanimous\Rpc\NimiqClient` object.
 
 ```php
 $config = [
@@ -22,7 +22,7 @@ $client = new \Lunanimous\Rpc\NimiqClient($config);
 ```
 
 Once we have the client, we can start communicating with the Nimiq node.
-If no `$config` object is passed in constructor it will use same defaults as the Nimiq node defaults.
+If no `$config` object is given in constructor it will use same defaults as the Nimiq node defaults.
 
 ```php
 $client = new \Lunanimous\Rpc\NimiqClient();
@@ -35,7 +35,7 @@ echo $blockNumber; // displays 748883
 
 ## API
 
-The complete API documentation is available in the `/docs` folder.
+The complete [API documentation](docs) is available in the `/docs` folder.
 
 Check out the [Nimiq RPC  specs](https://github.com/nimiq/core-js/wiki/JSON-RPC-API) for behind the scene RPC calls.
 

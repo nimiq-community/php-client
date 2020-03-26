@@ -1,6 +1,6 @@
 # Nimiq Go Client
 
-> Go implementation of the Nimiq RPC client specs.
+> PHP implementation of the Nimiq RPC client specs.
 
 ## Usage
 
@@ -19,7 +19,7 @@
 This implementation was originally contributed by [*Placeholder; Your name with link to GitHub*](https://github.com/nimiq/).
 
 Please send your contributions as pull requests.
-Refer to the [issue tracker](issues) for ideas.
+Refer to the [issue tracker](https://github.com/nimiq-community/php-client/issues) for ideas.
 
 ## License
 

@@ -20,6 +20,18 @@ class NimiqClient extends Client
     /**
      * Creates a new instance of the Nimiq client.
      *
+     * `$config` array, all fields are optional:
+     * ```
+     * $config = [
+     *   'scheme' => 'http',
+     *   'host' => '127.0.0.1',
+     *   'port' => 8648,
+     *   'user' => 'luna',
+     *   'password' => 'moon',
+     *   'timeout' => false,
+     * ];
+     * ```
+     *
      * @param array $config client config array (optional)
      *
      * @return NimiqClient new client instance

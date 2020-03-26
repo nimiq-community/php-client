@@ -68,7 +68,17 @@ Creates a new instance of the Nimiq client.
 NimiqClient::__construct( array $config = array() ): \Lunanimous\Rpc\NimiqClient
 ```
 
-
+`$config` array, all fields are optional:
+```
+$config = [
+  'scheme' => 'http',
+  'host' => '127.0.0.1',
+  'port' => 8648,
+  'user' => 'luna',
+  'password' => 'moon',
+  'timeout' => false,
+];
+```
 
 
 **Parameters:**
@@ -1173,4 +1183,4 @@ true if set successfully, otherwise false
 
 
 --------
-> This document was automatically generated from source code comments on 2020-03-21 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)
+> This document was automatically generated from source code comments on 2020-03-26 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)

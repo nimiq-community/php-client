@@ -1,4 +1,4 @@
-# Nimiq Go Client
+# Nimiq PHP Client
 
 > PHP implementation of the Nimiq RPC client specs.
 

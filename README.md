@@ -30,14 +30,14 @@ $client = new \Lunanimous\Rpc\NimiqClient();
 // make rpc call to get the block number
 $blockNumber = $client->getBlockNumber();
 
-echo $blockNumber; // displays 748883
+echo $blockNumber; // displays the block number, for example 748883
 ```
 
 ## API
 
 The complete [API documentation](docs) is available in the `/docs` folder.
 
-Check out the [Nimiq RPC  specs](https://github.com/nimiq/core-js/wiki/JSON-RPC-API) for behind the scene RPC calls.
+Check out the [Nimiq RPC specs](https://github.com/nimiq/core-js/wiki/JSON-RPC-API) for behind the scene RPC calls.
 
 ## Installation
 
@@ -88,7 +88,7 @@ After cloning the repository, install the dependencies:
 php composer.phar install
 ```
 
-All done, happy coding !
+All done, happy coding!
 
 ### Testing
 

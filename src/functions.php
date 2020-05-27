@@ -8,11 +8,11 @@ if (!function_exists('toNim')) {
      *
      * @param int $luna the value in luna (smallest unit)
      *
-     * @return float the value in nim
+     * @return float the value in nim (max 5 decimals)
      */
     function toNim($luna)
     {
-        return $luna / 100000;
+        return round($luna / 100000, 5);
     }
 }
 
@@ -26,6 +26,6 @@ if (!function_exists('toLuna')) {
      */
     function toLuna($nim)
     {
-        return $nim * 100000;
+        return round($nim * 100000, 0);
     }
 }

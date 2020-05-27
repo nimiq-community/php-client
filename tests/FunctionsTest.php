@@ -32,6 +32,13 @@ class FunctionsTest extends TestCase
         $this->assertEquals(0, $nim);
     }
 
+    public function testToNimWithMoreThan5Decimals()
+    {
+        $nim = toNim(1.01);
+
+        $this->assertEquals(0.00001, $nim);
+    }
+
     public function testToLuna()
     {
         $luna = toLuna(12);
@@ -51,5 +58,12 @@ class FunctionsTest extends TestCase
         $luna = toLuna(0);
 
         $this->assertEquals(0, $luna);
+    }
+
+    public function testToLunaWithMoreThan5Decimals()
+    {
+        $luna = toLuna(1.0000001);
+
+        $this->assertEquals(100000, $luna);
     }
 }

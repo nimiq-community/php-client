@@ -32,7 +32,7 @@ class Transaction extends Model
     public $confirmations;
 
     /**
-     * @var null|int index of the transaction in the block
+     * @var null|int index of the transaction in the block (null when getting transaction from hash)
      */
     public $transactionIndex;
 
@@ -47,11 +47,6 @@ class Transaction extends Model
     public $fromAddress;
 
     /**
-     * @var int account type of the given address
-     */
-    public $fromType = AccountType::Basic;
-
-    /**
      * @var string address the transaction is directed to
      */
     public $to;
@@ -60,11 +55,6 @@ class Transaction extends Model
      * @var string use friendly address the transaction is directed to
      */
     public $toAddress;
-
-    /**
-     * @var int account type of the given address
-     */
-    public $toType = AccountType::Basic;
 
     /**
      * @var int value (in smallest unit) sent with this transaction
@@ -80,4 +70,9 @@ class Transaction extends Model
      * @var null|string hex-encoded contract parameters or a message
      */
     public $data;
+
+    /**
+     * @var int flags for this transaction, 0 (basic transaction) or 1 (contract creation)
+     */
+    public $flags;
 }

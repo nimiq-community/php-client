@@ -378,7 +378,6 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf(Transaction::class, $result);
         $this->assertEquals('78957b87ab5546e11e9540ce5a37ebbf93a0ebd73c0ce05f137288f30ee9f430', $result->hash);
         $this->assertEquals(11608, $result->blockNumber);
-        $this->assertEquals(0, $result->transactionIndex);
         $this->assertEquals('355b4fe2304a9c818b9f0c3c1aaaf4ad4f6a0279', $result->from);
         $this->assertEquals('NQ16 6MDL YQHG 9AE8 32UY 1GX1 MAPL MM7N L0KR', $result->fromAddress);
         $this->assertEquals('4f61c06feeb7971af6997125fe40d629c01af92f', $result->to);
@@ -398,6 +397,32 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('78957b87ab5546e11e9540ce5a37ebbf93a0ebd73c0ce05f137288f30ee9f430', $body['params'][0]);
 
         $this->assertEquals(null, $result);
+    }
+
+    public function testGetTransactionByHashForContractCreation()
+    {
+        $this->appendNextResponse('getTransaction/contract-creation.json');
+
+        $result = $this->client->getTransactionByHash('539f6172b19f63be376ab7e962c368bb5f611deff6b159152c4cdf509f7daad2');
+
+        $body = $this->getLastRequestBody();
+        $this->assertEquals('getTransactionByHash', $body['method']);
+        $this->assertEquals('539f6172b19f63be376ab7e962c368bb5f611deff6b159152c4cdf509f7daad2', $body['params'][0]);
+
+        $this->assertInstanceOf(Transaction::class, $result);
+        $this->assertEquals('539f6172b19f63be376ab7e962c368bb5f611deff6b159152c4cdf509f7daad2', $result->hash);
+        $this->assertEquals('96fef80f517f0b2704476dee48da147049b591e8f034e5bf93f1f6935fd51b85', $result->blockHash);
+        $this->assertEquals(1102500, $result->blockNumber);
+        $this->assertEquals(1590148157, $result->timestamp);
+        $this->assertEquals(7115, $result->confirmations);
+        $this->assertEquals('d62d519b3478c63bdd729cf2ccb863178060c64a', $result->from);
+        $this->assertEquals('NQ53 SQNM 36RL F333 PPBJ KKRC RE33 2X06 1HJA', $result->fromAddress);
+        $this->assertEquals('a22eaf17848130c9b370e42ff7d345680df245e1', $result->to);
+        $this->assertEquals('NQ87 L8PA X5U4 G4QC KCTG UGPY FLS5 D06Y 4HF1', $result->toAddress);
+        $this->assertEquals(5000000000, $result->value);
+        $this->assertEquals(0, $result->fee);
+        $this->assertEquals('d62d519b3478c63bdd729cf2ccb863178060c64af5ad55071730d3b9f05989481eefbda7324a44f8030c63b9444960db429081543939166f05116cebc37bd6975ac9f9e3bb43a5ab0b010010d2de', $result->data);
+        $this->assertEquals(1, $result->flags);
     }
 
     public function testGetTransactionReceipt()

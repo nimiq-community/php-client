@@ -2,14 +2,17 @@
 
 namespace Lunanimous\Rpc;
 
+use Lunanimous\Rpc\Constants\AccountType;
 use Lunanimous\Rpc\Models\Account;
 use Lunanimous\Rpc\Models\Block;
+use Lunanimous\Rpc\Models\HashedTimeLockedContract;
 use Lunanimous\Rpc\Models\Mempool;
 use Lunanimous\Rpc\Models\OutgoingTransaction;
 use Lunanimous\Rpc\Models\Peer;
 use Lunanimous\Rpc\Models\SyncingStatus;
 use Lunanimous\Rpc\Models\Transaction;
 use Lunanimous\Rpc\Models\TransactionReceipt;
+use Lunanimous\Rpc\Models\VestingContract;
 use Lunanimous\Rpc\Models\Wallet;
 
 /**
@@ -471,7 +474,19 @@ class NimiqClient extends Client
         $result = $this->request('accounts');
 
         return array_map(function ($rawAccount) {
-            return new Account($rawAccount);
+            switch ($rawAccount['type']) {
+                case AccountType::Vesting:
+                    return new VestingContract($rawAccount);
+                    break;
+
+                case AccountType::Htlc:
+                    return new HashedTimeLockedContract($rawAccount);
+                    break;
+
+                default:
+                    return new Account($rawAccount);
+                    break;
+            }
         }, $result);
     }
 
@@ -504,13 +519,25 @@ class NimiqClient extends Client
      *
      * @param string $address address for which to get account details
      *
-     * @return Account details about the account. returns the default empty basic account for non-existing accounts.
+     * @return Account|VestingContract|HashedTimeLockedContract details about the account. returns the default empty basic account for non-existing accounts.
      */
     public function getAccount($address)
     {
         $result = $this->request('getAccount', $address);
 
-        return new Account($result);
+        switch ($result['type']) {
+            case AccountType::Vesting:
+                return new VestingContract($result);
+                break;
+
+            case AccountType::Htlc:
+                return new HashedTimeLockedContract($result);
+                break;
+
+            default:
+                return new Account($result);
+                break;
+        }
     }
 
     /**

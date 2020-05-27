@@ -771,10 +771,10 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
         $this->appendNextResponse('submitBlock/submit.json');
 
         $blockHex = '0001000000000000000000000000000000000000000000'
-            .'00000000000000000000000000000000000000000000000000000000000000000000000000000000'
-            .'000000f6ba2bbf7e1478a209057000471d73fbdc28df0b717747d929cfde829c4120f62e02da3d16'
-            .'2e20fa982029dbde9cc20f6b431ab05df1764f34af4c62a4f2b33f1f010000000000015ac3185f00'
-            .'0134990001000000000000000000000000000000000000000007546573744e657400000000';
+            . '00000000000000000000000000000000000000000000000000000000000000000000000000000000'
+            . '000000f6ba2bbf7e1478a209057000471d73fbdc28df0b717747d929cfde829c4120f62e02da3d16'
+            . '2e20fa982029dbde9cc20f6b431ab05df1764f34af4c62a4f2b33f1f010000000000015ac3185f00'
+            . '0134990001000000000000000000000000000000000000000007546573744e657400000000';
 
         $this->client->submitBlock($blockHex);
 
@@ -795,10 +795,17 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(3, $result);
         $this->assertInstanceOf(Account::class, $result[0]);
         $this->assertEquals('NQ33 Y4JH 0UTN 10DX 88FM 5MJB VHTM RGFU 4219', $result[0]->address);
+        $this->assertEquals(AccountType::Basic, $result[0]->type);
+
         $this->assertInstanceOf(Account::class, $result[1]);
-        $this->assertEquals('NQ82 4557 U5KC 98S8 X6HG GPHK 65VU 5YJ0 3BAV', $result[1]->address);
+        $this->assertEquals('NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF', $result[1]->address);
+        $this->assertEquals(AccountType::Vesting, $result[1]->type);
+        $this->assertEquals('NQ62 YLSA NUK5 L3J8 QHAC RFSC KHGV YPT8 Y6H2', $result[1]->ownerAddress);
+
         $this->assertInstanceOf(Account::class, $result[2]);
-        $this->assertEquals('NQ39 NY67 X0F0 UTQE 0YER 4JEU B67L UPP8 G0FM', $result[2]->address);
+        $this->assertEquals('NQ46 NTNU QX94 MVD0 BBT0 GXAR QUHK VGNF 39ET', $result[2]->address);
+        $this->assertEquals(AccountType::Htlc, $result[2]->type);
+        $this->assertEquals('NQ53 SQNM 36RL F333 PPBJ KKRC RE33 2X06 1HJA', $result[2]->senderAddress);
     }
 
     public function testCreateAccount()
@@ -830,9 +837,9 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1200000, $result);
     }
 
-    public function testGetAccount()
+    public function testGetAccountForBasicAccount()
     {
-        $this->appendNextResponse('getAccount/account.json');
+        $this->appendNextResponse('getAccount/basic.json');
 
         $result = $this->client->getAccount('NQ46 NTNU QX94 MVD0 BBT0 GXAR QUHK VGNF 39ET');
 
@@ -845,6 +852,55 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('NQ46 NTNU QX94 MVD0 BBT0 GXAR QUHK VGNF 39ET', $result->address);
         $this->assertEquals(1200000, $result->balance);
         $this->assertEquals(AccountType::Basic, $result->type);
+    }
+
+    public function testGetAccountForVestingContract()
+    {
+        $this->appendNextResponse('getAccount/vesting.json');
+
+        $result = $this->client->getAccount('NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF');
+
+        $body = $this->getLastRequestBody();
+        $this->assertEquals('getAccount', $body['method']);
+        $this->assertEquals('NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF', $body['params'][0]);
+
+        $this->assertInstanceOf(Account::class, $result);
+        $this->assertEquals('ebcbf0de7dae6a42d1c12967db9b2287bf2f7f0f', $result->id);
+        $this->assertEquals('NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF', $result->address);
+        $this->assertEquals(52500000000000, $result->balance);
+        $this->assertEquals(AccountType::Vesting, $result->type);
+        $this->assertEquals('fd34ab7265a0e48c454ccbf4c9c61dfdf68f9a22', $result->owner);
+        $this->assertEquals('NQ62 YLSA NUK5 L3J8 QHAC RFSC KHGV YPT8 Y6H2', $result->ownerAddress);
+        $this->assertEquals(1, $result->vestingStart);
+        $this->assertEquals(259200, $result->vestingStepBlocks);
+        $this->assertEquals(2625000000000, $result->vestingStepAmount);
+        $this->assertEquals(52500000000000, $result->vestingTotalAmount);
+    }
+
+    public function testGetAccountForHashedTimeLockedContract()
+    {
+        $this->appendNextResponse('getAccount/htlc.json');
+
+        $result = $this->client->getAccount('NQ46 NTNU QX94 MVD0 BBT0 GXAR QUHK VGNF 39ET');
+
+        $body = $this->getLastRequestBody();
+        $this->assertEquals('getAccount', $body['method']);
+        $this->assertEquals('NQ46 NTNU QX94 MVD0 BBT0 GXAR QUHK VGNF 39ET', $body['params'][0]);
+
+        $this->assertInstanceOf(Account::class, $result);
+        $this->assertEquals('4974636bd6d34d52b7d4a2ee4425dc2be72a2b4e', $result->id);
+        $this->assertEquals('NQ46 NTNU QX94 MVD0 BBT0 GXAR QUHK VGNF 39ET', $result->address);
+        $this->assertEquals(1000000000, $result->balance);
+        $this->assertEquals(AccountType::Htlc, $result->type);
+        $this->assertEquals('d62d519b3478c63bdd729cf2ccb863178060c64a', $result->sender);
+        $this->assertEquals('NQ53 SQNM 36RL F333 PPBJ KKRC RE33 2X06 1HJA', $result->senderAddress);
+        $this->assertEquals('f5ad55071730d3b9f05989481eefbda7324a44f8', $result->recipient);
+        $this->assertEquals('NQ41 XNNM A1QP 639T KU2R H541 VTVV LUR4 LH7Q', $result->recipientAddress);
+        $this->assertEquals('df331b3c8f8a889703092ea05503779058b7f44e71bc57176378adde424ce922', $result->hashRoot);
+        $this->assertEquals(1, $result->hashAlgorithm);
+        $this->assertEquals(1, $result->hashCount);
+        $this->assertEquals(1105605, $result->timeout);
+        $this->assertEquals(1000000000, $result->totalAmount);
     }
 
     public function testGetBlockNumber()
@@ -1086,7 +1142,7 @@ class NimiqClientTest extends \PHPUnit\Framework\TestCase
 
     private function appendNextResponse($fixture)
     {
-        $jsonResponse = file_get_contents(dirname(__FILE__).'/fixtures/'.$fixture);
+        $jsonResponse = file_get_contents(dirname(__FILE__) . '/fixtures/' . $fixture);
 
         $this->mock->append(new \GuzzleHttp\Psr7\Response(200, [], $jsonResponse));
     }

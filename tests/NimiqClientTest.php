@@ -1,24 +1,24 @@
 <?php
 
-use Lunanimous\Rpc\Constants\AccountType;
-use Lunanimous\Rpc\Constants\AddressState;
-use Lunanimous\Rpc\Constants\ConnectionState;
-use Lunanimous\Rpc\Constants\ConsensusState;
-use Lunanimous\Rpc\Constants\PeerStateCommand;
-use Lunanimous\Rpc\Constants\PoolConnectionState;
-use Lunanimous\Rpc\Models\Account;
-use Lunanimous\Rpc\Models\Block;
-use Lunanimous\Rpc\Models\Mempool;
-use Lunanimous\Rpc\Models\OutgoingTransaction;
-use Lunanimous\Rpc\Models\Peer;
-use Lunanimous\Rpc\Models\Transaction;
-use Lunanimous\Rpc\Models\TransactionReceipt;
-use Lunanimous\Rpc\Models\Wallet;
-use Lunanimous\Rpc\NimiqClient;
+use NimiqCommunity\RpcClient\Constants\AccountType;
+use NimiqCommunity\RpcClient\Constants\AddressState;
+use NimiqCommunity\RpcClient\Constants\ConnectionState;
+use NimiqCommunity\RpcClient\Constants\ConsensusState;
+use NimiqCommunity\RpcClient\Constants\PeerStateCommand;
+use NimiqCommunity\RpcClient\Constants\PoolConnectionState;
+use NimiqCommunity\RpcClient\Models\Account;
+use NimiqCommunity\RpcClient\Models\Block;
+use NimiqCommunity\RpcClient\Models\Mempool;
+use NimiqCommunity\RpcClient\Models\OutgoingTransaction;
+use NimiqCommunity\RpcClient\Models\Peer;
+use NimiqCommunity\RpcClient\Models\Transaction;
+use NimiqCommunity\RpcClient\Models\TransactionReceipt;
+use NimiqCommunity\RpcClient\Models\Wallet;
+use NimiqCommunity\RpcClient\NimiqClient;
 
 /**
  * @internal
- * @coversDefaultClass \Lunanimous\Rpc\NimiqClient
+ * @coversDefaultClass \NimiqCommunity\RpcClient\NimiqClient
  */
 class NimiqClientTest extends \PHPUnit\Framework\TestCase
 {

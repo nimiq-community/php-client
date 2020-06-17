@@ -1,5 +1,5 @@
 {
-    "name": "lunanimous/php-rpc-client",
+    "name": "nimiq-community/php-client",
     "description": "Nimiq RPC Client for PHP",
     "homepage": "https://github.com/nimiq-community/php-client",
     "type": "library",
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Lunanimous\\Rpc\\": "src"
+            "NimiqCommunity\\RpcClient\\": "src"
         },
         "files": [
             "src/functions.php"

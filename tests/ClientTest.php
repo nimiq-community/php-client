@@ -1,10 +1,10 @@
 <?php
 
-use Lunanimous\Rpc\Client;
+use NimiqCommunity\RpcClient\Client;
 
 /**
  * @internal
- * @coversDefaultClass \Lunanimous\Rpc\Client
+ * @coversDefaultClass \NimiqCommunity\RpcClient\Client
  */
 class ClientTest extends \PHPUnit\Framework\TestCase
 {

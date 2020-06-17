@@ -1,13 +1,13 @@
 <?php
 
-use function Lunanimous\Rpc\toLuna;
-use function Lunanimous\Rpc\toNim;
+use function NimiqCommunity\RpcClient\toLuna;
+use function NimiqCommunity\RpcClient\toNim;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @covers \Lunanimous\Rpc\toLuna
- * @covers \Lunanimous\Rpc\toNim
+ * @covers \NimiqCommunity\RpcClient\toLuna
+ * @covers \NimiqCommunity\RpcClient\toNim
  */
 class FunctionsTest extends TestCase
 {

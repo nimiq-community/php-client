@@ -1,6 +1,6 @@
 <?php
 
-namespace Lunanimous\Rpc;
+namespace NimiqCommunity\RpcClient;
 
 if (!function_exists('toNim')) {
     /**

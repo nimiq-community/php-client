@@ -1,6 +1,6 @@
 <?php
 
-namespace Lunanimous\Rpc\Models;
+namespace NimiqCommunity\RpcClient\Models;
 
 /**
  * @internal

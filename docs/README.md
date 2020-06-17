@@ -56,7 +56,7 @@ RPC Client to communicate with a Nimiq Node.
 
 
 
-* Full name: \Lunanimous\Rpc\NimiqClient
+* Full name: \NimiqCommunity\RpcClient\NimiqClient
 * Parent class: 
 
 
@@ -65,7 +65,7 @@ RPC Client to communicate with a Nimiq Node.
 Creates a new instance of the Nimiq client.
 
 ```php
-NimiqClient::__construct( array $config = array() ): \Lunanimous\Rpc\NimiqClient
+NimiqClient::__construct( array $config = array() ): \NimiqCommunity\RpcClient\NimiqClient
 ```
 
 `$config` array, all fields are optional:
@@ -121,7 +121,7 @@ number of connected peers
 Returns an object with data about the sync status or false.
 
 ```php
-NimiqClient::getSyncingState(  ): boolean|\Lunanimous\Rpc\Models\SyncingStatus
+NimiqClient::getSyncingState(  ): boolean|\NimiqCommunity\RpcClient\Models\SyncingStatus
 ```
 
 
@@ -161,7 +161,7 @@ string describing the consensus state. ConsensusState::Established is the value 
 Returns list of peers known to the client.
 
 ```php
-NimiqClient::getPeerList(  ): array&lt;mixed,\Lunanimous\Rpc\Models\Peer&gt;
+NimiqClient::getPeerList(  ): array&lt;mixed,\NimiqCommunity\RpcClient\Models\Peer&gt;
 ```
 
 
@@ -181,7 +181,7 @@ list of peers
 Returns the state of the peer.
 
 ```php
-NimiqClient::getPeer( string $peer ): \Lunanimous\Rpc\Models\Peer
+NimiqClient::getPeer( string $peer ): \NimiqCommunity\RpcClient\Models\Peer
 ```
 
 
@@ -207,7 +207,7 @@ current state of the peer
 Sets the state of the peer.
 
 ```php
-NimiqClient::setPeerState( string $peer, string $command ): \Lunanimous\Rpc\Models\Peer
+NimiqClient::setPeerState( string $peer, string $command ): \NimiqCommunity\RpcClient\Models\Peer
 ```
 
 
@@ -261,7 +261,7 @@ Creates and signs a transaction without sending it. The transaction can then be 
 without accidentally replaying it.
 
 ```php
-NimiqClient::createRawTransaction( \Lunanimous\Rpc\Models\OutgoingTransaction $tx ): string
+NimiqClient::createRawTransaction( \NimiqCommunity\RpcClient\Models\OutgoingTransaction $tx ): string
 ```
 
 
@@ -271,7 +271,7 @@ NimiqClient::createRawTransaction( \Lunanimous\Rpc\Models\OutgoingTransaction $t
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$tx` | **\Lunanimous\Rpc\Models\OutgoingTransaction** | transaction object |
+| `$tx` | **\NimiqCommunity\RpcClient\Models\OutgoingTransaction** | transaction object |
 
 
 **Return Value:**
@@ -287,7 +287,7 @@ hex-encoded transaction
 Creates new message call transaction or a contract creation, if the data field contains code.
 
 ```php
-NimiqClient::sendTransaction( \Lunanimous\Rpc\Models\OutgoingTransaction $tx ): string
+NimiqClient::sendTransaction( \NimiqCommunity\RpcClient\Models\OutgoingTransaction $tx ): string
 ```
 
 
@@ -297,7 +297,7 @@ NimiqClient::sendTransaction( \Lunanimous\Rpc\Models\OutgoingTransaction $tx ): 
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$tx` | **\Lunanimous\Rpc\Models\OutgoingTransaction** | transaction object |
+| `$tx` | **\NimiqCommunity\RpcClient\Models\OutgoingTransaction** | transaction object |
 
 
 **Return Value:**
@@ -313,7 +313,7 @@ hex-encoded transaction hash
 Deserializes hex-encoded transaction and returns a transaction object.
 
 ```php
-NimiqClient::getRawTransactionInfo( string $txHex ): \Lunanimous\Rpc\Models\Transaction
+NimiqClient::getRawTransactionInfo( string $txHex ): \NimiqCommunity\RpcClient\Models\Transaction
 ```
 
 
@@ -339,7 +339,7 @@ transaction object
 Returns information about a transaction by block hash and transaction index position.
 
 ```php
-NimiqClient::getTransactionByBlockHashAndIndex( string $blockHash, integer $txIndex ): null|\Lunanimous\Rpc\Models\Transaction
+NimiqClient::getTransactionByBlockHashAndIndex( string $blockHash, integer $txIndex ): null|\NimiqCommunity\RpcClient\Models\Transaction
 ```
 
 
@@ -366,7 +366,7 @@ transaction object, or null when no transaction was found
 Returns information about a transaction by block number and transaction index position.
 
 ```php
-NimiqClient::getTransactionByBlockNumberAndIndex( integer $blockNumber, integer $txIndex ): null|\Lunanimous\Rpc\Models\Transaction
+NimiqClient::getTransactionByBlockNumberAndIndex( integer $blockNumber, integer $txIndex ): null|\NimiqCommunity\RpcClient\Models\Transaction
 ```
 
 
@@ -393,7 +393,7 @@ transaction object, or null when no transaction was found
 Returns the information about a transaction requested by transaction hash.
 
 ```php
-NimiqClient::getTransactionByHash( string $hash ): null|\Lunanimous\Rpc\Models\Transaction
+NimiqClient::getTransactionByHash( string $hash ): null|\NimiqCommunity\RpcClient\Models\Transaction
 ```
 
 
@@ -419,7 +419,7 @@ transaction object, or null when no transaction was found
 Returns the receipt of a transaction by transaction hash. The receipt is not available for pending transactions.
 
 ```php
-NimiqClient::getTransactionReceipt( string $hash ): \Lunanimous\Rpc\Models\TransactionReceipt
+NimiqClient::getTransactionReceipt( string $hash ): \NimiqCommunity\RpcClient\Models\TransactionReceipt
 ```
 
 
@@ -446,7 +446,7 @@ Returns the latest transactions successfully performed by or for an address. Thi
 when blocks are rewinded on the local state due to forks.
 
 ```php
-NimiqClient::getTransactionsByAddress( string $address, integer $limit = 1000 ): array&lt;mixed,\Lunanimous\Rpc\Models\Transaction&gt;
+NimiqClient::getTransactionsByAddress( string $address, integer $limit = 1000 ): array&lt;mixed,\NimiqCommunity\RpcClient\Models\Transaction&gt;
 ```
 
 
@@ -473,7 +473,7 @@ array of transactions linked to the requested address
 Returns transactions that are currently in the mempool.
 
 ```php
-NimiqClient::getMempoolContent( boolean $includeTransactions = false ): array&lt;mixed,string&gt;|array&lt;mixed,\Lunanimous\Rpc\Models\Transaction&gt;
+NimiqClient::getMempoolContent( boolean $includeTransactions = false ): array&lt;mixed,string&gt;|array&lt;mixed,\NimiqCommunity\RpcClient\Models\Transaction&gt;
 ```
 
 
@@ -500,7 +500,7 @@ Returns information on the current mempool situation. This will provide an overv
 transactions sorted into buckets based on their fee per byte (in smallest unit).
 
 ```php
-NimiqClient::getMempool(  ): \Lunanimous\Rpc\Models\Mempool
+NimiqClient::getMempool(  ): \NimiqCommunity\RpcClient\Models\Mempool
 ```
 
 
@@ -861,7 +861,7 @@ NimiqClient::submitBlock( string $blockHex )
 Returns a list of addresses owned by client.
 
 ```php
-NimiqClient::getAccounts(  ): array&lt;mixed,\Lunanimous\Rpc\Models\Account&gt;|array&lt;mixed,\Lunanimous\Rpc\Models\VestingContract&gt;|array&lt;mixed,\Lunanimous\Rpc\Models\HashedTimeLockedContract&gt;
+NimiqClient::getAccounts(  ): array&lt;mixed,\NimiqCommunity\RpcClient\Models\Account&gt;|array&lt;mixed,\NimiqCommunity\RpcClient\Models\VestingContract&gt;|array&lt;mixed,\NimiqCommunity\RpcClient\Models\HashedTimeLockedContract&gt;
 ```
 
 
@@ -881,7 +881,7 @@ array of accounts owned by the client
 Creates a new account and stores its private key in the client store.
 
 ```php
-NimiqClient::createAccount(  ): \Lunanimous\Rpc\Models\Wallet
+NimiqClient::createAccount(  ): \NimiqCommunity\RpcClient\Models\Wallet
 ```
 
 
@@ -927,7 +927,7 @@ the current balance at the specified address (in smallest unit)
 Returns details for the account of given address.
 
 ```php
-NimiqClient::getAccount( string $address ): \Lunanimous\Rpc\Models\Account|\Lunanimous\Rpc\Models\VestingContract|\Lunanimous\Rpc\Models\HashedTimeLockedContract
+NimiqClient::getAccount( string $address ): \NimiqCommunity\RpcClient\Models\Account|\NimiqCommunity\RpcClient\Models\VestingContract|\NimiqCommunity\RpcClient\Models\HashedTimeLockedContract
 ```
 
 
@@ -1025,7 +1025,7 @@ number of transactions in the block found, or null when no block was found
 Returns information about a block by hash.
 
 ```php
-NimiqClient::getBlockByHash( string $blockHash, boolean $includeTransactions = false ): null|\Lunanimous\Rpc\Models\Block
+NimiqClient::getBlockByHash( string $blockHash, boolean $includeTransactions = false ): null|\NimiqCommunity\RpcClient\Models\Block
 ```
 
 
@@ -1052,7 +1052,7 @@ block object, or null when no block was found
 Returns information about a block by block number.
 
 ```php
-NimiqClient::getBlockByNumber( integer $blockNumber, boolean $includeTransactions = false ): null|\Lunanimous\Rpc\Models\Block
+NimiqClient::getBlockByNumber( integer $blockNumber, boolean $includeTransactions = false ): null|\NimiqCommunity\RpcClient\Models\Block
 ```
 
 

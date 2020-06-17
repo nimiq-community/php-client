@@ -1,11 +1,11 @@
 <?php
 
-use Lunanimous\Rpc\NimiqResponse;
+use NimiqCommunity\RpcClient\NimiqResponse;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversDefaultClass \Lunanimous\Rpc\Response
+ * @coversDefaultClass \NimiqCommunity\RpcClient\Response
  */
 class ResponseTest extends TestCase
 {

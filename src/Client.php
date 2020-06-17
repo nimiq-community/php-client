@@ -1,6 +1,6 @@
 <?php
 
-namespace Lunanimous\Rpc;
+namespace NimiqCommunity\RpcClient;
 
 use BadMethodCallException;
 use GuzzleHttp\Client as GuzzleHttp;
@@ -96,7 +96,7 @@ class Client
      */
     public function getBaseUri(): string
     {
-        return $this->config['scheme'].'://'.$this->config['host'].':'.$this->config['port'];
+        return $this->config['scheme'] . '://' . $this->config['host'] . ':' . $this->config['port'];
     }
 
     /**

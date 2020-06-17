@@ -1,19 +1,19 @@
 <?php
 
-namespace Lunanimous\Rpc;
+namespace NimiqCommunity\RpcClient;
 
-use Lunanimous\Rpc\Constants\AccountType;
-use Lunanimous\Rpc\Models\Account;
-use Lunanimous\Rpc\Models\Block;
-use Lunanimous\Rpc\Models\HashedTimeLockedContract;
-use Lunanimous\Rpc\Models\Mempool;
-use Lunanimous\Rpc\Models\OutgoingTransaction;
-use Lunanimous\Rpc\Models\Peer;
-use Lunanimous\Rpc\Models\SyncingStatus;
-use Lunanimous\Rpc\Models\Transaction;
-use Lunanimous\Rpc\Models\TransactionReceipt;
-use Lunanimous\Rpc\Models\VestingContract;
-use Lunanimous\Rpc\Models\Wallet;
+use NimiqCommunity\RpcClient\Constants\AccountType;
+use NimiqCommunity\RpcClient\Models\Account;
+use NimiqCommunity\RpcClient\Models\Block;
+use NimiqCommunity\RpcClient\Models\HashedTimeLockedContract;
+use NimiqCommunity\RpcClient\Models\Mempool;
+use NimiqCommunity\RpcClient\Models\OutgoingTransaction;
+use NimiqCommunity\RpcClient\Models\Peer;
+use NimiqCommunity\RpcClient\Models\SyncingStatus;
+use NimiqCommunity\RpcClient\Models\Transaction;
+use NimiqCommunity\RpcClient\Models\TransactionReceipt;
+use NimiqCommunity\RpcClient\Models\VestingContract;
+use NimiqCommunity\RpcClient\Models\Wallet;
 
 /**
  * RPC Client to communicate with a Nimiq Node.

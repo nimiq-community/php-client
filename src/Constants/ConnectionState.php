@@ -1,6 +1,6 @@
 <?php
 
-namespace Lunanimous\Rpc\Constants;
+namespace NimiqCommunity\RpcClient\Constants;
 
 class ConnectionState
 {

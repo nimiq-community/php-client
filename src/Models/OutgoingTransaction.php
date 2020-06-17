@@ -1,8 +1,8 @@
 <?php
 
-namespace Lunanimous\Rpc\Models;
+namespace NimiqCommunity\RpcClient\Models;
 
-use Lunanimous\Rpc\Constants\AccountType;
+use NimiqCommunity\RpcClient\Constants\AccountType;
 
 class OutgoingTransaction extends Model
 {

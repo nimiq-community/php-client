@@ -1,12 +1,10 @@
 # Nimiq PHP Client
 
-[![Latest Stable Version](https://poser.pugx.org/lunanimous/php-rpc-client/v/stable)](https://packagist.org/packages/lunanimous/php-rpc-client)
-
 > PHP implementation of the Nimiq RPC client specs.
 
 ## Usage
 
-Send requests to a Nimiq node using a `Lunanimous\Rpc\NimiqClient` object.
+Send requests to a Nimiq node using a `NimiqCommunity\RpcClient\NimiqClient` object.
 
 ```php
 $config = [
@@ -18,14 +16,14 @@ $config = [
     'timeout' => false,
 ];
 
-$client = new \Lunanimous\Rpc\NimiqClient($config);
+$client = new \NimiqCommunity\RpcClient\NimiqClient($config);
 ```
 
 Once we have the client, we can start communicating with the Nimiq node.
 If no `$config` object is given in constructor it will use same defaults as the Nimiq node defaults.
 
 ```php
-$client = new \Lunanimous\Rpc\NimiqClient();
+$client = new \NimiqCommunity\RpcClient\NimiqClient();
 
 // make rpc call to get the block number
 $blockNumber = $client->getBlockNumber();
@@ -52,7 +50,7 @@ curl -sS https://getcomposer.org/installer | php
 You can add Nimiq PHP Client as a dependency using the composer.phar CLI:
 
 ```sh
-php composer.phar require lunanimous/php-rpc-client
+php composer.phar require nimiq-community/php-client
 ```
 
 Alternatively, you can specify it as a dependency in your project's existing composer.json file:
@@ -60,7 +58,7 @@ Alternatively, you can specify it as a dependency in your project's existing com
 ```json
 {
     "require": {
-        "lunanimous/php-rpc-client": "^1.0"
+        "nimiq-community/php-client": "^1.0"
     }
 }
 ```

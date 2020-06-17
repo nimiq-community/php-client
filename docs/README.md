@@ -861,7 +861,7 @@ NimiqClient::submitBlock( string $blockHex )
 Returns a list of addresses owned by client.
 
 ```php
-NimiqClient::getAccounts(  ): array&lt;mixed,\Lunanimous\Rpc\Models\Account&gt;
+NimiqClient::getAccounts(  ): array&lt;mixed,\Lunanimous\Rpc\Models\Account&gt;|array&lt;mixed,\Lunanimous\Rpc\Models\VestingContract&gt;|array&lt;mixed,\Lunanimous\Rpc\Models\HashedTimeLockedContract&gt;
 ```
 
 
@@ -927,7 +927,7 @@ the current balance at the specified address (in smallest unit)
 Returns details for the account of given address.
 
 ```php
-NimiqClient::getAccount( string $address ): \Lunanimous\Rpc\Models\Account
+NimiqClient::getAccount( string $address ): \Lunanimous\Rpc\Models\Account|\Lunanimous\Rpc\Models\VestingContract|\Lunanimous\Rpc\Models\HashedTimeLockedContract
 ```
 
 
@@ -1183,4 +1183,4 @@ true if set successfully, otherwise false
 
 
 --------
-> This document was automatically generated from source code comments on 2020-03-26 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)
+> This document was automatically generated from source code comments on 2020-06-17 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)

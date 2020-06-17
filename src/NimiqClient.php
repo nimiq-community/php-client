@@ -467,26 +467,14 @@ class NimiqClient extends Client
     /**
      * Returns a list of addresses owned by client.
      *
-     * @return Account[] array of accounts owned by the client
+     * @return Account[]|VestingContract[]|HashedTimeLockedContract[] array of accounts owned by the client
      */
     public function getAccounts()
     {
         $result = $this->request('accounts');
 
         return array_map(function ($rawAccount) {
-            switch ($rawAccount['type']) {
-                case AccountType::Vesting:
-                    return new VestingContract($rawAccount);
-                    break;
-
-                case AccountType::Htlc:
-                    return new HashedTimeLockedContract($rawAccount);
-                    break;
-
-                default:
-                    return new Account($rawAccount);
-                    break;
-            }
+            return $this->convertAccountInfoToModel($rawAccount);
         }, $result);
     }
 
@@ -525,19 +513,7 @@ class NimiqClient extends Client
     {
         $result = $this->request('getAccount', $address);
 
-        switch ($result['type']) {
-            case AccountType::Vesting:
-                return new VestingContract($result);
-                break;
-
-            case AccountType::Htlc:
-                return new HashedTimeLockedContract($result);
-                break;
-
-            default:
-                return new Account($result);
-                break;
-        }
+        return $this->convertAccountInfoToModel($result);
     }
 
     /**
@@ -660,5 +636,26 @@ class NimiqClient extends Client
     public function setLogLevel($tag, $level)
     {
         return $this->request('log', $tag, $level);
+    }
+
+    /**
+     * Create an Account, HTLC or Vesting contract based on the type.
+     *
+     * @param array $rawAccount raw account information from RPC response
+     *
+     * @return Account|HashedTimeLockedContract|VestingContract account model depending on type
+     */
+    private function convertAccountInfoToModel($rawAccount)
+    {
+        switch ($rawAccount['type']) {
+            case AccountType::Vesting:
+                return new VestingContract($rawAccount);
+
+            case AccountType::Htlc:
+                return new HashedTimeLockedContract($rawAccount);
+
+            default:
+                return new Account($rawAccount);
+        }
     }
 }

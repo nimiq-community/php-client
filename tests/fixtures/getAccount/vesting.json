@@ -1,0 +1,16 @@
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "id": "ebcbf0de7dae6a42d1c12967db9b2287bf2f7f0f",
+        "address": "NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF",
+        "balance": 52500000000000,
+        "type": 1,
+        "owner": "fd34ab7265a0e48c454ccbf4c9c61dfdf68f9a22",
+        "ownerAddress": "NQ62 YLSA NUK5 L3J8 QHAC RFSC KHGV YPT8 Y6H2",
+        "vestingStart": 1,
+        "vestingStepBlocks": 259200,
+        "vestingStepAmount": 2625000000000,
+        "vestingTotalAmount": 52500000000000
+    },
+    "id": 1
+}

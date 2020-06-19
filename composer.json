@@ -1,0 +1,34 @@
+{
+    "name": "nimiq-community/php-client",
+    "description": "Nimiq RPC Client for PHP",
+    "homepage": "https://github.com/nimiq-community/php-client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mario",
+            "role": "Developer"
+        }
+    ],
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "docs": "vendor/bin/phpdoc"
+    },
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "cvuorinen/phpdoc-markdown-public": "^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "NimiqCommunity\\RpcClient\\": "src"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    }
+}

@@ -2,6 +2,11 @@
 
 > PHP implementation of the Nimiq RPC client specs.
 
+This repository is archived: Nimiq PoS has been launched and this RPC client only supports the
+old PoW RPC specification. As of now, there is no PHP RPC client implementation. Please
+[contact us](mailto:community@nimiq.com) if you are interested in implementing and supporting the
+Nimiq ecosystem for PHP.
+
 ## Usage
 
 Send requests to a Nimiq node using a `NimiqCommunity\RpcClient\NimiqClient` object.
